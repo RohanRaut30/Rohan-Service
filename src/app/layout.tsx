@@ -14,8 +14,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rohanraut.dev"),
   title: "Rohan Raut | Extreme Velocity Development",
-  description: "Personal brand website for Rohan Raut, Software Developer specializing in building production-ready web apps fast.",
+  description: "Senior Frontend Engineer & UI/UX Designer specializing in building production-ready web apps and SaaS dashboards faster than traditional timelines.",
+  keywords: ["Rohan Raut", "Software Developer", "Next.js Developer", "React", "Tailwind CSS", "Pune", "Freelance Developer"],
+  openGraph: {
+    title: "Rohan Raut | Extreme Velocity Development",
+    description: "Building production-ready web apps and software significantly faster without sacrificing quality.",
+    url: "https://rohanraut.dev",
+    siteName: "Rohan Raut Portfolio",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rohan Raut | Extreme Velocity Development",
+    description: "Building production-ready web apps and software significantly faster without sacrificing quality.",
+  },
 };
 
 export default function RootLayout({
