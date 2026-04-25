@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { MagneticBentoCard } from "../components/MagneticBentoCard";
 import { AIIntro } from "../components/AIIntro";
 import { ContactModal } from "../components/ContactModal";
-import { ThemeToggle } from "../components/ThemeToggle";
+import { Header } from "../components/Header";
 import { Zap, Rocket, Terminal, Code, Cpu, Database, LayoutTemplate, Search, Mail } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -30,30 +30,7 @@ export default function Home() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-neonCyan/10 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-electricPurple/10 blur-[120px] rounded-full pointer-events-none" />
 
-        {/* Header */}
-        <header className="relative z-10 flex items-center justify-between px-4 sm:px-8 py-5 sm:py-6 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-foreground text-background rounded-lg flex items-center justify-center font-bold text-lg sm:text-xl shrink-0">R</div>
-            <div className="flex flex-col">
-              <span className="text-lg sm:text-xl font-bold tracking-tighter leading-tight text-foreground">ROHAN RAUT</span>
-              <span className="hidden sm:block text-xs text-zinc-500 dark:text-zinc-400 font-medium tracking-wide">rohan.raut.dev@gmail.com</span>
-            </div>
-          </Link>
-          <nav className="flex items-center gap-3 sm:gap-6 text-sm font-medium">
-            <Link href="/" className="text-neonCyan hidden sm:block">Services</Link>
-            <Link href="/resume" className="text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors">Resume</Link>
-            
-            <ThemeToggle />
-            
-            <button 
-              onClick={() => setIsContactModalOpen(true)}
-              className="hidden sm:flex items-center gap-2 px-4 py-2 bg-surface hover:bg-surfaceBorder transition-colors border border-surfaceBorder cursor-pointer rounded-full"
-            >
-              <Mail className="w-4 h-4" />
-              <span>Contact</span>
-            </button>
-          </nav>
-        </header>
+        <Header activePage="services" onContactClick={() => setIsContactModalOpen(true)} />
 
         {/* Main Content */}
         <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 pt-16 pb-24 flex flex-col items-center gap-16">
