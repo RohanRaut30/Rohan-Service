@@ -31,16 +31,16 @@ export default function Home() {
         <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-electricPurple/10 blur-[120px] rounded-full pointer-events-none" />
 
         {/* Header */}
-        <header className="relative z-10 flex items-center justify-between px-4 sm:px-8 py-6 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
-          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 bg-foreground text-background rounded-lg flex items-center justify-center font-bold text-xl shrink-0">R</div>
+        <header className="relative z-10 flex items-center justify-between px-4 sm:px-8 py-5 sm:py-6 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-foreground text-background rounded-lg flex items-center justify-center font-bold text-lg sm:text-xl shrink-0">R</div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold tracking-tighter leading-tight text-foreground">ROHAN RAUT</span>
-              <span className="text-xs text-zinc-500 dark:text-zinc-400 font-medium tracking-wide">rohan.raut.dev@gmail.com</span>
+              <span className="text-lg sm:text-xl font-bold tracking-tighter leading-tight text-foreground">ROHAN RAUT</span>
+              <span className="hidden sm:block text-xs text-zinc-500 dark:text-zinc-400 font-medium tracking-wide">rohan.raut.dev@gmail.com</span>
             </div>
           </Link>
-          <nav className="flex items-center gap-4 sm:gap-6 text-sm font-medium">
-            <Link href="/" className="text-neonCyan">Services</Link>
+          <nav className="flex items-center gap-3 sm:gap-6 text-sm font-medium">
+            <Link href="/" className="text-neonCyan hidden sm:block">Services</Link>
             <Link href="/resume" className="text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors">Resume</Link>
             
             <ThemeToggle />

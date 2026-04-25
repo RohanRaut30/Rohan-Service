@@ -17,23 +17,23 @@ export default function Resume() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-neonCyan/10 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-electricPurple/10 blur-[120px] rounded-full pointer-events-none" />
 
-        <header className="relative z-10 flex items-center justify-between px-8 py-6 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
-          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 bg-foreground text-background rounded-lg flex items-center justify-center font-bold text-xl shrink-0">R</div>
+        <header className="relative z-10 flex items-center justify-between px-4 sm:px-8 py-5 sm:py-6 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-foreground text-background rounded-lg flex items-center justify-center font-bold text-lg sm:text-xl shrink-0">R</div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold tracking-tighter leading-tight text-foreground">ROHAN RAUT</span>
-              <span className="text-xs text-zinc-500 dark:text-zinc-400 font-medium tracking-wide">rohan.raut.dev@gmail.com</span>
+              <span className="text-lg sm:text-xl font-bold tracking-tighter leading-tight text-foreground">ROHAN RAUT</span>
+              <span className="hidden sm:block text-xs text-zinc-500 dark:text-zinc-400 font-medium tracking-wide">rohan.raut.dev@gmail.com</span>
             </div>
           </Link>
-          <nav className="flex items-center gap-6 text-sm font-medium">
-            <Link href="/" className="text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors">Services</Link>
+          <nav className="flex items-center gap-3 sm:gap-6 text-sm font-medium">
+            <Link href="/" className="text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors hidden sm:block">Services</Link>
             <Link href="/resume" className="text-neonCyan">Resume</Link>
             
             <ThemeToggle />
 
             <button 
               onClick={() => setIsContactModalOpen(true)}
-              className="px-4 py-2 bg-surface hover:bg-surfaceBorder transition-colors border border-surfaceBorder cursor-pointer rounded-full"
+              className="hidden sm:flex px-4 py-2 bg-surface hover:bg-surfaceBorder transition-colors border border-surfaceBorder cursor-pointer rounded-full"
             >
               Contact
             </button>
