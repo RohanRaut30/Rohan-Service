@@ -18,11 +18,11 @@ export function Header({ activePage, onContactClick }: HeaderProps) {
     <header className="relative z-50 flex items-center justify-between px-4 sm:px-8 py-5 sm:py-6 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
       
       {/* Brand & Logo */}
-      <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity z-50">
+      <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity z-50 min-w-0">
         <div className="w-8 h-8 sm:w-10 sm:h-10 bg-foreground text-background rounded-lg flex items-center justify-center font-bold text-lg sm:text-xl shrink-0">R</div>
-        <div className="flex flex-col">
-          <span className="text-lg sm:text-xl font-bold tracking-tighter leading-tight text-foreground">ROHAN RAUT</span>
-          <span className="hidden sm:block text-xs text-zinc-500 dark:text-zinc-400 font-medium tracking-wide">rohan.raut.dev@gmail.com</span>
+        <div className="flex flex-col min-w-0">
+          <span className="text-base sm:text-xl font-bold tracking-tighter leading-tight text-foreground truncate">ROHAN RAUT</span>
+          <span className="text-[9px] sm:text-xs text-zinc-500 dark:text-zinc-400 font-medium tracking-wide truncate">rohan.raut.dev@gmail.com</span>
         </div>
       </Link>
 
