@@ -7,7 +7,7 @@ import { Mail, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface HeaderProps {
-  activePage: "services" | "resume";
+  activePage: "services" | "resume" | "collab";
   onContactClick: () => void;
 }
 
@@ -30,6 +30,7 @@ export function Header({ activePage, onContactClick }: HeaderProps) {
       <nav className="hidden sm:flex items-center gap-6 text-sm font-medium">
         <Link href="/" className={activePage === "services" ? "text-neonCyan" : "text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors"}>Services</Link>
         <Link href="/resume" className={activePage === "resume" ? "text-neonCyan" : "text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors"}>Experience</Link>
+        <Link href="/collab" className={activePage === "collab" ? "text-neonCyan" : "text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors"}>Collab Hub</Link>
         
         <div className="w-px h-6 bg-black/10 dark:bg-white/10 mx-1" />
         
@@ -44,54 +45,10 @@ export function Header({ activePage, onContactClick }: HeaderProps) {
         </button>
       </nav>
 
-      {/* Mobile Navigation Controls */}
+      {/* Mobile Controls (Top Right) */}
       <div className="flex sm:hidden items-center gap-3 z-50">
         <ThemeToggle />
-        
-        {/* Highlighted Contact Button on Mobile */}
-        <button 
-          onClick={onContactClick}
-          className="px-4 py-1.5 bg-foreground text-background text-sm font-bold rounded-full hover:scale-[0.98] transition-transform shadow-md"
-        >
-          Contact
-        </button>
-        
-        {/* Hamburger Menu Toggle */}
-        <button 
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-1.5 text-foreground bg-black/5 dark:bg-white/10 rounded-md border border-black/10 dark:border-white/10 transition-colors"
-        >
-          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
       </div>
-
-      {/* Mobile Dropdown Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -15, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -15, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-full left-4 right-4 mt-2 p-3 bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-2xl border border-black/10 dark:border-white/10 rounded-2xl shadow-2xl sm:hidden flex flex-col gap-2 text-center text-base font-semibold z-40"
-          >
-            <Link 
-              href="/" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`p-3 rounded-xl transition-colors ${activePage === "services" ? "bg-neonCyan/10 text-neonCyan" : "text-foreground hover:bg-black/5 dark:hover:bg-white/5"}`}
-            >
-              Services
-            </Link>
-            <Link 
-              href="/resume" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`p-3 rounded-xl transition-colors ${activePage === "resume" ? "bg-neonCyan/10 text-neonCyan" : "text-foreground hover:bg-black/5 dark:hover:bg-white/5"}`}
-            >
-              Experience
-            </Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   );
 }

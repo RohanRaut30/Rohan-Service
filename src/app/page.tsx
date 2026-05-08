@@ -5,6 +5,10 @@ import { MagneticBentoCard } from "../components/MagneticBentoCard";
 import { AIIntro } from "../components/AIIntro";
 import { ContactModal } from "../components/ContactModal";
 import { Header } from "../components/Header";
+import { ProjectCostEstimator } from "../components/ProjectCostEstimator";
+import { TechStackMatcher } from "../components/TechStackMatcher";
+import { LocalGreeting } from "../components/LocalGreeting";
+import { IndustryProjects } from "../components/IndustryProjects";
 import { Zap, Rocket, Terminal, Code, Cpu, Database, LayoutTemplate, Search, Mail } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -37,6 +41,8 @@ export default function Home() {
           
           {/* USP Hero Section */}
           <section className="flex flex-col items-center text-center gap-6 max-w-4xl w-full">
+            <LocalGreeting />
+            
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-neonCyan font-mono shadow-[0_0_15px_rgba(0,240,255,0.2)]">
               <Zap className="h-4 w-4 fill-neonCyan" />
               <span>AI-POWERED EXTREME VELOCITY</span>
@@ -169,6 +175,23 @@ export default function Home() {
               </div>
             </MagneticBentoCard>
 
+          </section>
+
+          {/* Industry Projects Section */}
+          <IndustryProjects />
+
+          {/* Interactive Tools Section */}
+          <section className="w-full mt-12">
+            <div className="mb-10 text-center">
+              <h2 className="text-3xl font-bold text-white mb-4">Interactive Calculators</h2>
+              <p className="text-zinc-400 max-w-xl mx-auto">
+                Stop guessing. Use my interactive tools below to get instant estimates on project costs and discover the exact technology stack you need.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+              <ProjectCostEstimator onContact={() => setIsContactModalOpen(true)} />
+              <TechStackMatcher onContact={() => setIsContactModalOpen(true)} />
+            </div>
           </section>
 
           {/* CTA Footer */}

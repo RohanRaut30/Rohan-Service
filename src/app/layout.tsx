@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/ThemeProvider";
+import { MobileNav } from "../components/MobileNav";
+import { FloatingContact } from "../components/FloatingContact";
+import { TimeBasedTheme } from "../components/TimeBasedTheme";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,14 +17,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rohanraut.dev"),
+  metadataBase: new URL("https://www.rohanraut.is-a.dev"),
   title: "Rohan Raut | Extreme Velocity Development",
   description: "Senior Frontend Engineer & UI/UX Designer specializing in building production-ready web apps and SaaS dashboards faster than traditional timelines.",
   keywords: ["Rohan Raut", "Software Developer", "Next.js Developer", "React", "Tailwind CSS", "Pune", "Freelance Developer"],
   openGraph: {
     title: "Rohan Raut | Extreme Velocity Development",
     description: "Building production-ready web apps and software significantly faster without sacrificing quality.",
-    url: "https://rohanraut.dev",
+    url: "https://www.rohanraut.is-a.dev",
     siteName: "Rohan Raut Portfolio",
     type: "website",
   },
@@ -43,9 +46,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+      <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300 pb-24 sm:pb-0">
+        <ThemeProvider attribute="class" defaultTheme="dark" themes={["light", "dark", "sunset", "midnight"]} enableSystem>
+          <TimeBasedTheme />
           {children}
+          <MobileNav />
+          <FloatingContact />
         </ThemeProvider>
       </body>
     </html>
