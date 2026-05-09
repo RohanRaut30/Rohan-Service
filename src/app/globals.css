@@ -23,16 +23,22 @@
 }
 
 .sunset {
-  --background: #1e1b4b; /* Deep Indigo / Purple */
-  --foreground: #fef08a; /* Soft Yellow/Orange text */
-  --surface: rgba(249, 115, 22, 0.05); /* Warm orange tint */
+  --background: #1e1b4b;
+  /* Deep Indigo / Purple */
+  --foreground: #fef08a;
+  /* Soft Yellow/Orange text */
+  --surface: rgba(249, 115, 22, 0.05);
+  /* Warm orange tint */
   --surface-border: rgba(249, 115, 22, 0.2);
 }
 
 .midnight {
-  --background: #020617; /* Very Deep Blue/Black */
-  --foreground: #e2e8f0; /* Slate 200 */
-  --surface: rgba(56, 189, 248, 0.03); /* Subtle blue tint */
+  --background: #020617;
+  /* Very Deep Blue/Black */
+  --foreground: #e2e8f0;
+  /* Slate 200 */
+  --surface: rgba(56, 189, 248, 0.03);
+  /* Subtle blue tint */
   --surface-border: rgba(56, 189, 248, 0.15);
 }
 
@@ -47,7 +53,10 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }

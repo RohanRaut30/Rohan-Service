@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/ThemeProvider";
@@ -17,10 +17,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#000000",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.rohanraut.is-a.dev"),
   title: "Rohan Raut | Extreme Velocity Development",
   description: "Senior Software Engineer specializing in building production-ready software solutions, mobile apps, HRMS, and CRMs faster than traditional timelines.",
+  manifest: "/manifest.json",
   keywords: ["Rohan Raut", "Software Developer", "Next.js Developer", "React", "Tailwind CSS", "Pune", "Freelance Developer", "Full Stack Engineer"],
   authors: [{ name: "Rohan Raut" }],
   creator: "Rohan Raut",

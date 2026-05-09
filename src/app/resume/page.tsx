@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { MagneticBentoCard } from "../../components/MagneticBentoCard";
 import { ContactModal } from "../../components/ContactModal";
 import { Header } from "../../components/Header";
-import { Briefcase, Database, Cloud, Code2, ExternalLink } from "lucide-react";
+import { Briefcase, Database, Cloud, Code2, ExternalLink, Zap } from "lucide-react";
 import Link from "next/link";
 
 export default function Resume() {
@@ -85,11 +85,27 @@ export default function Resume() {
                   <Code2 className="text-blue-600 dark:text-neonCyan h-5 w-5" />
                   <h3 className="text-lg font-semibold">Tech Arsenal</h3>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {["Angular (v16-19)", "TypeScript", "Node.js", "MySQL", "MongoDB", "React.js", "Firebase", "Azure AZ-900"].map((tech) => (
-                    <span key={tech} className="px-3 py-1.5 rounded-md bg-foreground/5 border border-foreground/10 text-sm font-medium hover:border-foreground/30 transition-colors cursor-default">
-                      {tech}
-                    </span>
+                <div className="flex flex-col gap-3">
+                  {[
+                    { category: "Languages", skills: ["JavaScript", "TypeScript", "HTML5", "CSS3 / SCSS"] },
+                    { category: "Frameworks & Libs", skills: ["Angular (16–19)", "Node.js", "React.js", "React Native", "Bootstrap"] },
+                    { category: "Databases", skills: ["MySQL", "MongoDB", "Firebase"] },
+                    { category: "Tools & Platforms", skills: ["Git & GitHub/Gitlab", "Power BI", "Thunder Client", "Linux Server"] },
+                    { category: "Cloud & APIs", skills: ["Microsoft Azure (AZ-900)", "WhatsApp (Interakt) API", "Payment Gateways (Cashfree)"] },
+                    { category: "Concepts", skills: ["REST API Design", "Responsive UI", "Database Optimization", "Clean Architecture"] },
+                  ].map((group) => (
+                    <div key={group.category} className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4">
+                      <span className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider w-36 shrink-0 pt-1">
+                        {group.category}
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {group.skills.map((tech) => (
+                          <span key={tech} className="px-2 py-0.5 rounded-md bg-foreground/5 border border-foreground/10 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:border-foreground/30 transition-colors cursor-default">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -137,6 +153,23 @@ export default function Resume() {
                   <h3 className="font-bold text-sm">Master of Computer Applications</h3>
                   <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">Pune University (2023)</p>
                 </div>
+              </div>
+            </MagneticBentoCard>
+
+            {/* Freelance Availability */}
+            <MagneticBentoCard className="md:col-span-2" glowColor="rgba(255, 200, 0, 0.15)">
+              <div className="p-6 h-full flex flex-col justify-center items-center text-center relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-500/10 blur-[50px] rounded-full pointer-events-none" />
+                <div className="w-12 h-12 bg-yellow-500/10 rounded-full flex items-center justify-center mb-3">
+                  <Zap className="w-6 h-6 text-yellow-500 dark:text-yellow-400" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Available for Freelance</h3>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-5 max-w-sm">
+                  Partner with me to build fast, scalable, and modern software. I take on select freelance projects, MVPs, and consulting roles.
+                </p>
+                <button onClick={() => setIsContactModalOpen(true)} className="px-6 py-2 bg-foreground text-background rounded-full text-sm font-semibold hover:scale-105 transition-transform cursor-pointer shadow-md">
+                  Let's Collaborate
+                </button>
               </div>
             </MagneticBentoCard>
 

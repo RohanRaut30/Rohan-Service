@@ -31,7 +31,7 @@ export function MobileNav() {
   return (
     <div className="sm:hidden fixed bottom-6 left-4 right-4 z-50">
       <div className="bg-surface/80 backdrop-blur-xl border border-foreground/10 rounded-full px-6 py-4 flex items-center justify-between shadow-[0_10px_40px_rgba(0,0,0,0.8)]">
-        
+
         <Link href="/" className="flex flex-col items-center gap-1 group">
           <Home className={`w-5 h-5 transition-colors ${pathname === "/" ? "text-blue-600 dark:text-neonCyan" : "text-zinc-500 group-hover:text-zinc-700 dark:text-zinc-300"}`} />
           <span className={`text-[10px] font-medium ${pathname === "/" ? "text-blue-600 dark:text-neonCyan" : "text-zinc-500"}`}>Home</span>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { MagneticBentoCard } from "../components/MagneticBentoCard";
 import { AIIntro } from "../components/AIIntro";
 import { ContactModal } from "../components/ContactModal";
@@ -10,19 +11,40 @@ import { TechStackMatcher } from "../components/TechStackMatcher";
 import { LocalGreeting } from "../components/LocalGreeting";
 
 import { useContact } from "../components/ContactContext";
-import { Zap, Rocket, Terminal, Code, Cpu, Database, LayoutTemplate, Search, Mail } from "lucide-react";
+import { Zap, Rocket, Code, Cpu, Database, LayoutTemplate, Mail, Search, Terminal } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [aiResponse, setAiResponse] = useState<string | null>(null);
   const [isSearching, setIsSearching] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
   const { openContactModal } = useContact();
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchQuery.trim() || isSearching) return;
+
     setIsSearching(true);
-    setTimeout(() => setIsSearching(false), 1500); // Simulate AI thinking
+    setHasSearched(true);
+    setAiResponse(null);
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: [{ role: "user", content: searchQuery }] }),
+      });
+      const data = await res.json();
+      
+      if (data.error) throw new Error(data.error);
+      setAiResponse(data.text);
+    } catch (err) {
+      setAiResponse("Sorry, I'm having trouble connecting right now. Please try again later.");
+    } finally {
+      setIsSearching(false);
+    }
   };
 
   return (
@@ -59,51 +81,60 @@ export default function Home() {
               Need a scalable web/mobile app, MVP, CRM, HRMS, or complex dashboard shipped yesterday? I leverage AI-agents and deep Full-Stack expertise to deliver high-performance software at record speed.
             </p>
 
-            {/* Center Search Bar */}
+            {/* Real AI Search Bar */}
             <div className="w-full max-w-2xl mt-8 relative z-20">
-              <div className="relative flex items-center bg-background/5 dark:bg-foreground/5 border border-black/10 dark:border-foreground/10 rounded-full px-6 shadow-sm backdrop-blur-xl transition-all focus-within:border-black/20 dark:focus-within:border-foreground/20 focus-within:shadow-md">
+              <form onSubmit={handleSearch} className="relative flex items-center bg-background/5 dark:bg-foreground/5 border border-black/10 dark:border-foreground/10 rounded-full px-6 shadow-sm backdrop-blur-xl transition-all focus-within:border-black/20 dark:focus-within:border-foreground/20 focus-within:shadow-md">
                 <Search className="w-5 h-5 text-zinc-500 mr-3 shrink-0" />
                 <input
                   type="text"
-                  placeholder="Search projects I can build (e.g. 'SaaS Dashboard', 'AI Integration')..."
+                  placeholder="Ask my AI anything (e.g. 'Do you know React Native?')..."
                   value={searchQuery}
-                  onChange={handleSearch}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   className="flex-1 bg-transparent text-foreground placeholder-zinc-500 outline-none text-base sm:text-lg h-14 min-w-0"
                 />
-              </div>
+                <button type="submit" disabled={isSearching || !searchQuery.trim()} className="hidden sm:block px-6 py-2 ml-2 bg-foreground text-background rounded-full text-sm font-semibold disabled:opacity-50 hover:scale-105 transition-transform cursor-pointer shadow-md">
+                  Ask AI
+                </button>
+              </form>
 
-              {/* Fake AI Search Results */}
+              {/* AI Search Results */}
               <AnimatePresence>
-                {searchQuery && (
+                {hasSearched && (
                   <motion.div
                     initial={{ opacity: 0, y: -10, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.98 }}
-                    className="absolute top-full left-0 right-0 mt-3 p-2 bg-foreground/80 dark:bg-surface/80 backdrop-blur-2xl border border-black/10 dark:border-foreground/10 rounded-2xl shadow-2xl z-50 text-left"
+                    className="absolute top-full left-0 right-0 mt-3 p-4 bg-zinc-900 dark:bg-surface/95 backdrop-blur-2xl border border-black/10 dark:border-foreground/10 rounded-2xl shadow-2xl z-50 text-left overflow-hidden"
                   >
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-xs font-semibold text-zinc-400 tracking-wider uppercase">AI Analysis</span>
+                      <button onClick={() => setHasSearched(false)} className="text-zinc-500 hover:text-white transition-colors text-xs cursor-pointer">Close</button>
+                    </div>
                     {isSearching ? (
-                      <div className="flex items-center gap-3 text-zinc-500 dark:text-zinc-400 p-4">
-                        <Terminal className="w-5 h-5 animate-pulse text-blue-600 dark:text-neonCyan" />
-                        <span>AI Agent mapping optimal architecture for "{searchQuery}"...</span>
+                      <div className="flex items-center gap-3 text-zinc-300 py-2">
+                        <Terminal className="w-5 h-5 animate-pulse text-neonCyan shrink-0" />
+                        <span className="text-sm">Rohan's AI is processing your question...</span>
                       </div>
                     ) : (
-                      <div className="space-y-3">
-                        <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-surface transition-colors">
-                          <Cpu className="w-5 h-5 text-blue-600 dark:text-neonCyan mt-0.5" />
-                          <div>
-                            <h4 className="text-foreground font-medium">Yes, I can build exactly that.</h4>
-                            <p className="text-sm text-zinc-500 dark:text-zinc-400">Estimated execution time: 3x faster than standard teams.</p>
+                      <div className="space-y-4">
+                        <div className="flex items-start gap-3">
+                          <Cpu className="w-5 h-5 text-neonCyan mt-1 shrink-0" />
+                          <div className="text-zinc-200 text-sm prose prose-sm prose-invert max-w-none">
+                            <ReactMarkdown>{aiResponse || ""}</ReactMarkdown>
                           </div>
                         </div>
-                        <button onClick={openContactModal} className="block w-full text-center py-2 text-sm text-blue-600 dark:text-neonCyan hover:underline cursor-pointer">
-                          Let's discuss requirements ➔
-                        </button>
+                        <div className="pt-3 border-t border-white/10 flex justify-end">
+                          <button onClick={openContactModal} className="text-xs font-semibold text-neonCyan hover:underline cursor-pointer">
+                            Let's discuss requirements ➔
+                          </button>
+                        </div>
                       </div>
                     )}
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
+
           </section>
 
           {/* Services Bento Grid */}
