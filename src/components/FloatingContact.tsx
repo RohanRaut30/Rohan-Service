@@ -17,7 +17,7 @@ export function FloatingContact() {
       animate={{ scale: 1, opacity: 1 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-28 sm:bottom-8 right-4 sm:right-8 z-40 bg-[#25D366] text-white p-4 rounded-full shadow-[0_0_20px_rgba(37,211,102,0.4)] flex items-center justify-center cursor-pointer"
+      className="fixed bottom-28 sm:bottom-8 right-4 sm:right-8 z-40 bg-[#25D366] text-foreground p-4 rounded-full shadow-[0_0_20px_rgba(37,211,102,0.4)] flex items-center justify-center cursor-pointer"
     >
       <MessageCircle className="w-6 h-6" />
     </motion.a>

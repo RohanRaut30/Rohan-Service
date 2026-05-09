@@ -76,7 +76,7 @@ export function MagneticBentoCard({
       />
 
       {/* Card Content with Glassmorphism */}
-      <div className="relative z-10 flex h-full w-full flex-col rounded-[23px] bg-surface/50 backdrop-blur-md border border-surfaceBorder overflow-hidden bg-black/40">
+      <div className="relative z-10 flex h-full w-full flex-col rounded-[23px] bg-surface/50 backdrop-blur-md border border-surfaceBorder overflow-hidden bg-surfaceBorder/40">
         {children}
       </div>
     </motion.div>

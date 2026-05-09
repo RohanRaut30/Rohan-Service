@@ -5,6 +5,7 @@ import { ThemeProvider } from "../components/ThemeProvider";
 import { MobileNav } from "../components/MobileNav";
 import { FloatingContact } from "../components/FloatingContact";
 import { TimeBasedTheme } from "../components/TimeBasedTheme";
+import { ContactProvider } from "../components/ContactContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,11 +20,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.rohanraut.is-a.dev"),
   title: "Rohan Raut | Extreme Velocity Development",
-  description: "Senior Frontend Engineer & UI/UX Designer specializing in building production-ready web apps and SaaS dashboards faster than traditional timelines.",
+  description: "Senior Software Engineer specializing in building production-ready software solutions, mobile apps, HRMS, and CRMs faster than traditional timelines.",
   keywords: ["Rohan Raut", "Software Developer", "Next.js Developer", "React", "Tailwind CSS", "Pune", "Freelance Developer"],
   openGraph: {
     title: "Rohan Raut | Extreme Velocity Development",
-    description: "Building production-ready web apps and software significantly faster without sacrificing quality.",
+    description: "Building production-ready software solutions, web, and mobile applications significantly faster without sacrificing quality.",
     url: "https://www.rohanraut.is-a.dev",
     siteName: "Rohan Raut Portfolio",
     type: "website",
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Rohan Raut | Extreme Velocity Development",
-    description: "Building production-ready web apps and software significantly faster without sacrificing quality.",
+    description: "Building production-ready software solutions, web, and mobile applications significantly faster without sacrificing quality.",
   },
 };
 
@@ -49,9 +50,11 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300 pb-24 sm:pb-0">
         <ThemeProvider attribute="class" defaultTheme="dark" themes={["light", "dark", "sunset", "midnight"]} enableSystem>
           <TimeBasedTheme />
-          {children}
-          <MobileNav />
-          <FloatingContact />
+          <ContactProvider>
+            {children}
+            <MobileNav />
+            <FloatingContact />
+          </ContactProvider>
         </ThemeProvider>
       </body>
     </html>

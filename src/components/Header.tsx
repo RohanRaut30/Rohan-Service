@@ -15,7 +15,7 @@ export function Header({ activePage, onContactClick }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="relative z-50 flex items-center justify-between px-4 sm:px-8 py-5 sm:py-6 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
+    <header className="relative z-50 flex items-center justify-between px-4 sm:px-8 py-5 sm:py-6 max-w-7xl mx-auto border-b border-black/10 dark:border-foreground/10">
       
       {/* Brand & Logo */}
       <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity z-50 min-w-0">
@@ -28,11 +28,11 @@ export function Header({ activePage, onContactClick }: HeaderProps) {
 
       {/* Desktop Navigation */}
       <nav className="hidden sm:flex items-center gap-6 text-sm font-medium">
-        <Link href="/" className={activePage === "services" ? "text-neonCyan" : "text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors"}>Services</Link>
-        <Link href="/resume" className={activePage === "resume" ? "text-neonCyan" : "text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors"}>Experience</Link>
-        <Link href="/collab" className={activePage === "collab" ? "text-neonCyan" : "text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors"}>Collab Hub</Link>
+        <Link href="/" className={activePage === "services" ? "text-blue-600 dark:text-neonCyan" : "text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors"}>Services</Link>
+        <Link href="/resume" className={activePage === "resume" ? "text-blue-600 dark:text-neonCyan" : "text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors"}>Experience</Link>
+        <Link href="/collab" className={activePage === "collab" ? "text-purple-700 dark:text-electricPurple" : "text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors"}>Collab Hub</Link>
         
-        <div className="w-px h-6 bg-black/10 dark:bg-white/10 mx-1" />
+        <div className="w-px h-6 bg-background/10 dark:bg-foreground/10 mx-1" />
         
         <ThemeToggle />
         

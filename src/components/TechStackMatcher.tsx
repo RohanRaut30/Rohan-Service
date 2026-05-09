@@ -38,16 +38,16 @@ export function TechStackMatcher({ onContact }: { onContact: () => void }) {
   const [selectedProblem, setSelectedProblem] = useState<keyof typeof solutions | null>(null);
 
   return (
-    <div className="bg-[#0a0a0a] border border-white/10 rounded-3xl p-6 md:p-8 w-full shadow-2xl relative overflow-hidden group h-full flex flex-col">
+    <div className="bg-surface border border-foreground/10 rounded-3xl p-6 md:p-8 w-full shadow-2xl relative overflow-hidden group h-full flex flex-col">
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-electricPurple/5 blur-[100px] rounded-full pointer-events-none group-hover:bg-electricPurple/10 transition-colors duration-700" />
       
       <div className="flex items-center gap-3 mb-6 relative z-10">
-        <div className="p-3 bg-white/5 rounded-xl border border-white/10">
-          <Wrench className="w-6 h-6 text-electricPurple" />
+        <div className="p-3 bg-foreground/5 rounded-xl border border-foreground/10">
+          <Wrench className="w-6 h-6 text-purple-700 dark:text-electricPurple" />
         </div>
         <div>
-          <h3 className="text-2xl font-bold text-white">Tech Stack Matcher</h3>
-          <p className="text-sm text-zinc-400">Select your biggest bottleneck to see how I'd solve it.</p>
+          <h3 className="text-2xl font-bold text-foreground">Tech Stack Matcher</h3>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">Select your biggest bottleneck to see how I'd solve it.</p>
         </div>
       </div>
 
@@ -62,18 +62,18 @@ export function TechStackMatcher({ onContact }: { onContact: () => void }) {
                 onClick={() => setSelectedProblem(problem.id as keyof typeof solutions)}
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-full border text-sm font-medium transition-all duration-300 ${
                   isSelected
-                    ? "bg-electricPurple/20 border-electricPurple/50 text-white shadow-[0_0_15px_rgba(138,43,226,0.2)]"
-                    : "bg-white/5 border-white/10 text-zinc-400 hover:border-white/20 hover:text-zinc-200"
+                    ? "bg-electricPurple/20 border-electricPurple/50 text-foreground shadow-[0_0_15px_rgba(138,43,226,0.2)]"
+                    : "bg-foreground/5 border-foreground/10 text-zinc-600 dark:text-zinc-400 hover:border-foreground/20 hover:text-zinc-800 dark:hover:text-zinc-200"
                 }`}
               >
-                <Icon className={`w-4 h-4 ${isSelected ? "text-electricPurple" : "text-zinc-500"}`} />
+                <Icon className={`w-4 h-4 ${isSelected ? "text-purple-700 dark:text-electricPurple" : "text-zinc-500"}`} />
                 {problem.label}
               </button>
             );
           })}
         </div>
 
-        <div className="flex-1 bg-black/50 border border-white/5 rounded-2xl p-6 relative overflow-hidden min-h-[220px] flex flex-col justify-center">
+        <div className="flex-1 bg-surfaceBorder/50 border border-foreground/5 rounded-2xl p-6 relative overflow-hidden min-h-[220px] flex flex-col justify-center">
           <AnimatePresence mode="wait">
             {!selectedProblem ? (
               <motion.div
@@ -96,16 +96,16 @@ export function TechStackMatcher({ onContact }: { onContact: () => void }) {
               >
                 <div>
                   <div className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Recommended Stack</div>
-                  <div className="text-lg font-bold text-electricPurple">
+                  <div className="text-lg font-bold text-purple-700 dark:text-electricPurple">
                     {solutions[selectedProblem].stack}
                   </div>
                 </div>
                 <div>
                   <div className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Service Match</div>
-                  <div className="text-white font-medium mb-2">
+                  <div className="text-foreground font-medium mb-2">
                     {solutions[selectedProblem].service}
                   </div>
-                  <p className="text-sm text-zinc-400 leading-relaxed">
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     {solutions[selectedProblem].description}
                   </p>
                 </div>

@@ -22,7 +22,7 @@ export default function Resume() {
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 pt-12 pb-24 flex flex-col gap-12">
         <section className="flex flex-col items-start gap-4">
           <h1 className="text-4xl font-bold tracking-tighter">Professional Experience</h1>
-          <p className="text-zinc-400 max-w-2xl">A detailed look at my career history, tech stack, and key projects.</p>
+          <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl">A detailed look at my career history, tech stack, and key projects.</p>
         </section>
 
         <section className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 auto-rows-[auto]">
@@ -31,25 +31,25 @@ export default function Resume() {
           <MagneticBentoCard className="md:col-span-2 row-span-2 min-h-[300px]" glowColor="rgba(138, 43, 226, 0.2)">
             <div className="p-8 flex flex-col h-full relative z-10">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-electricPurple/10 rounded-xl text-electricPurple">
+                <div className="p-3 bg-electricPurple/10 rounded-xl text-purple-700 dark:text-electricPurple">
                   <Briefcase className="w-6 h-6" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">Software Developer</h3>
-                  <p className="text-zinc-400">Onelife, Mumbai</p>
+                  <p className="text-zinc-600 dark:text-zinc-400">Onelife, Mumbai</p>
                 </div>
               </div>
-              <ul className="space-y-4 text-zinc-300">
+              <ul className="space-y-4 text-zinc-700 dark:text-zinc-300">
                 <li className="flex gap-3">
-                  <span className="text-electricPurple">▹</span>
+                  <span className="text-purple-700 dark:text-electricPurple">▹</span>
                   <span>Spearheaded migration of a production LMS from Angular v2 to v19, improving build performance by ~35%.</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-electricPurple">▹</span>
+                  <span className="text-purple-700 dark:text-electricPurple">▹</span>
                   <span>Engineered Node.js backend APIs, reducing response times and enhancing overall throughput.</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-electricPurple">▹</span>
+                  <span className="text-purple-700 dark:text-electricPurple">▹</span>
                   <span>Refactored 10+ legacy modules to align with clean architecture principles.</span>
                 </li>
               </ul>
@@ -63,12 +63,12 @@ export default function Resume() {
           <MagneticBentoCard className="md:col-span-2" glowColor="rgba(255, 255, 255, 0.1)">
             <div className="p-6 h-full flex flex-col justify-center">
               <div className="flex items-center gap-3 mb-4">
-                <Code2 className="text-neonCyan h-5 w-5" />
+                <Code2 className="text-blue-600 dark:text-neonCyan h-5 w-5" />
                 <h3 className="text-lg font-semibold">Tech Arsenal</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {["Angular (v16-19)", "TypeScript", "Node.js", "MySQL", "MongoDB", "React.js", "Firebase", "Azure AZ-900"].map((tech) => (
-                  <span key={tech} className="px-3 py-1.5 rounded-md bg-white/5 border border-white/10 text-sm font-medium hover:border-white/30 transition-colors cursor-default">
+                  <span key={tech} className="px-3 py-1.5 rounded-md bg-foreground/5 border border-foreground/10 text-sm font-medium hover:border-foreground/30 transition-colors cursor-default">
                     {tech}
                   </span>
                 ))}
@@ -81,14 +81,14 @@ export default function Resume() {
             <div className="p-6 flex flex-col h-full relative z-10 justify-between">
               <div>
                 <h3 className="text-lg font-bold">Full-Stack Developer</h3>
-                <p className="text-sm text-zinc-400 mb-4">Policy Planner, Pune (Nov 2023 - Sep 2025)</p>
-                <p className="text-sm text-zinc-300">
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4">Policy Planner, Pune (Nov 2023 - Sep 2025)</p>
+                <p className="text-sm text-zinc-700 dark:text-zinc-300">
                   Architected the MPS web platform serving 1,000+ registered users. Integrated WhatsApp Business API and Cashfree payment gateways. Optimized MySQL queries for production scale.
                 </p>
               </div>
               <div className="flex gap-2 mt-4">
-                <span className="text-xs px-2 py-1 bg-white/5 rounded text-zinc-400">REST APIs</span>
-                <span className="text-xs px-2 py-1 bg-white/5 rounded text-zinc-400">MySQL</span>
+                <span className="text-xs px-2 py-1 bg-foreground/5 rounded text-zinc-600 dark:text-zinc-400">REST APIs</span>
+                <span className="text-xs px-2 py-1 bg-foreground/5 rounded text-zinc-600 dark:text-zinc-400">MySQL</span>
               </div>
             </div>
           </MagneticBentoCard>
@@ -101,22 +101,22 @@ export default function Resume() {
               </h3>
               <div className="space-y-6">
                 <div className="group">
-                  <h4 className="font-semibold text-white flex items-center gap-2">
+                  <h4 className="font-semibold text-foreground flex items-center gap-2">
                     LMS Migration
                   </h4>
-                  <p className="text-sm text-zinc-400 mt-1">Led full migration from Angular v2 to v19. Restructured module architecture and optimized REST APIs for scalability.</p>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Led full migration from Angular v2 to v19. Restructured module architecture and optimized REST APIs for scalability.</p>
                 </div>
-                <div className="h-px w-full bg-white/10" />
+                <div className="h-px w-full bg-foreground/10" />
                 <div className="group">
-                  <h4 className="font-semibold text-white flex items-center gap-2">
-                    Pyrite Resorts & Villas <a href="http://www.pyriteresortsandvillas.com" target="_blank" rel="noreferrer"><ExternalLink className="w-3 h-3 text-zinc-500 hover:text-white" /></a>
+                  <h4 className="font-semibold text-foreground flex items-center gap-2">
+                    Pyrite Resorts & Villas <a href="http://www.pyriteresortsandvillas.com" target="_blank" rel="noreferrer"><ExternalLink className="w-3 h-3 text-zinc-500 hover:text-foreground" /></a>
                   </h4>
-                  <p className="text-sm text-zinc-400 mt-1">Architected fully responsive live site using Angular, Bootstrap, and Node.js. Optimized SEO and load performance.</p>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Architected fully responsive live site using Angular, Bootstrap, and Node.js. Optimized SEO and load performance.</p>
                 </div>
-                <div className="h-px w-full bg-white/10" />
+                <div className="h-px w-full bg-foreground/10" />
                 <div className="group">
-                  <h4 className="font-semibold text-white">RewardPlanners & BizzPlanners</h4>
-                  <p className="text-sm text-zinc-400 mt-1">Dual-module web & mobile platform using Angular, Node.js, and React Native.</p>
+                  <h4 className="font-semibold text-foreground">RewardPlanners & BizzPlanners</h4>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Dual-module web & mobile platform using Angular, Node.js, and React Native.</p>
                 </div>
               </div>
             </div>
@@ -128,12 +128,12 @@ export default function Resume() {
               <div>
                 <Cloud className="w-8 h-8 text-blue-400 mb-3 mx-auto" />
                 <h3 className="font-bold">Azure Certified</h3>
-                <p className="text-xs text-zinc-400 mt-1">AZ-900 Fundamentals</p>
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">AZ-900 Fundamentals</p>
               </div>
-              <div className="h-16 w-px bg-white/20 mx-4" />
+              <div className="h-16 w-px bg-foreground/20 mx-4" />
               <div>
                 <h3 className="font-bold text-sm">Master of Computer Applications</h3>
-                <p className="text-xs text-zinc-400 mt-1">Pune University (2023)</p>
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">Pune University (2023)</p>
               </div>
             </div>
           </MagneticBentoCard>

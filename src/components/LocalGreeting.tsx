@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { MapPin, Sun, Moon, Coffee } from "lucide-react";
+import { Sun, Moon, Coffee } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function LocalGreeting() {
   const [greeting, setGreeting] = useState("");
   const [day, setDay] = useState("");
-  const [location, setLocation] = useState("");
   const [Icon, setIcon] = useState<React.ElementType>(Coffee);
 
   useEffect(() => {
@@ -27,18 +26,6 @@ export function LocalGreeting() {
       setGreeting("Good Evening");
       setIcon(() => Moon);
     }
-
-    // Try to get location based on timezone
-    try {
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      // Extract city from timezone (e.g., "Asia/Kolkata" -> "Kolkata")
-      if (tz && tz.includes("/")) {
-        const city = tz.split("/")[1].replace("_", " ");
-        setLocation(`from ${city}`);
-      }
-    } catch (e) {
-      // Fallback if timezone detection fails
-    }
   }, []);
 
   if (!greeting) return null; // Prevent hydration mismatch flash
@@ -47,11 +34,11 @@ export function LocalGreeting() {
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-zinc-300 backdrop-blur-md mb-6"
+      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 border border-foreground/10 text-sm text-zinc-700 dark:text-zinc-300 backdrop-blur-md mb-6"
     >
-      <Icon className="w-4 h-4 text-neonCyan" />
+      <Icon className="w-4 h-4 text-blue-600 dark:text-neonCyan" />
       <span>
-        {greeting} {location}! Hope you're having a productive {day}.
+        {greeting}! Hope you're having a productive {day}.
       </span>
     </motion.div>
   );
