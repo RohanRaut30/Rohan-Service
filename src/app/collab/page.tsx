@@ -5,6 +5,7 @@ import { Header } from "../../components/Header";
 import { Lock } from "lucide-react";
 import { motion } from "framer-motion";
 import { useContact } from "../../components/ContactContext";
+import { ProposalGenerator } from "../../components/ProposalGenerator";
 
 export default function CollabHub() {
   const { openContactModal } = useContact();
@@ -38,7 +39,11 @@ export default function CollabHub() {
             </p>
           </div>
 
-          <div className="mt-12">
+          {/* AI Instant Proposal Generator */}
+          <ProposalGenerator onContactClick={openContactModal} />
+
+          <div className="mt-16 w-full max-w-3xl flex flex-col items-center">
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent mb-16" />
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}

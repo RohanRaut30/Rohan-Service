@@ -6,7 +6,7 @@ import { MobileNav } from "../components/MobileNav";
 import { FloatingContact } from "../components/FloatingContact";
 import { TimeBasedTheme } from "../components/TimeBasedTheme";
 import { ContactProvider } from "../components/ContactContext";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -87,6 +87,7 @@ export default function RootLayout({
             {children}
             <MobileNav />
             <FloatingContact />
+            <SpeedInsights />
           </ContactProvider>
         </ThemeProvider>
       </body>
