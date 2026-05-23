@@ -54,7 +54,7 @@ export function CommandPalette() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full max-w-xl overflow-hidden rounded-2xl border border-surfaceBorder bg-surface shadow-2xl shadow-neonCyan/10"
+              className="relative w-full max-w-xl overflow-hidden rounded-2xl border border-surfaceBorder bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md shadow-2xl shadow-neonCyan/10"
             >
               <div className="flex items-center border-b border-surfaceBorder px-4 py-3">
                 <Command className="h-5 w-5 text-blue-600 dark:text-neonCyan mr-3" />
@@ -64,7 +64,7 @@ export function CommandPalette() {
                   placeholder="e.g., 'Show me his fastest builds'"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  className="flex-1 bg-transparent text-foreground placeholder-zinc-500 outline-none"
+                  className="flex-1 bg-transparent text-foreground placeholder-zinc-400 dark:placeholder-zinc-500 outline-none"
                 />
                 <button onClick={() => setIsOpen(false)}>
                   <X className="h-5 w-5 text-zinc-500 hover:text-foreground transition-colors" />

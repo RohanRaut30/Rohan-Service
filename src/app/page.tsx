@@ -91,7 +91,7 @@ export default function Home() {
                   placeholder="Ask my AI anything (e.g. 'Do you know React Native?')..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="flex-1 bg-transparent text-foreground placeholder-zinc-500 outline-none text-base sm:text-lg h-14 min-w-0"
+                  className="flex-1 bg-transparent text-foreground placeholder-zinc-400 dark:placeholder-zinc-500 outline-none text-base sm:text-lg h-14 min-w-0"
                 />
                 <button type="submit" disabled={isSearching || !searchQuery.trim()} className="hidden sm:block px-6 py-2 ml-2 bg-foreground text-background rounded-full text-sm font-semibold disabled:opacity-50 hover:scale-105 transition-transform cursor-pointer shadow-md">
                   Ask AI

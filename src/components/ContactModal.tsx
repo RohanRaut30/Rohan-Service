@@ -48,7 +48,7 @@ export function ContactModal({ isOpen, onClose, initialProjectText = "" }: Conta
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    
+
     setStatus("loading");
 
     try {
@@ -89,7 +89,7 @@ export function ContactModal({ isOpen, onClose, initialProjectText = "" }: Conta
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-lg bg-surface border border-surfaceBorder rounded-2xl shadow-2xl p-6 sm:p-8 overflow-hidden"
+            className="relative w-full max-w-lg bg-white/95 dark:bg-zinc-950/95 border border-surfaceBorder backdrop-blur-md rounded-2xl shadow-2xl p-6 sm:p-8 overflow-hidden"
           >
             {/* Background Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200px] h-[100px] bg-neonCyan/20 blur-[60px] pointer-events-none rounded-full" />
@@ -128,8 +128,8 @@ export function ContactModal({ isOpen, onClose, initialProjectText = "" }: Conta
                       setFormData({ ...formData, name: e.target.value });
                       if (errors.name) setErrors({ ...errors, name: "" });
                     }}
-                    className={`w-full bg-foreground/5 border ${errors.name ? 'border-red-500 dark:border-red-500' : 'border-foreground/10'} rounded-lg px-4 py-2.5 text-foreground placeholder-zinc-500 focus:outline-none focus:border-neonCyan transition-colors`}
-                    placeholder="John Doe"
+                    className={`w-full bg-foreground/5 border ${errors.name ? 'border-red-500 dark:border-red-500' : 'border-foreground/10'} rounded-lg px-4 py-2.5 text-foreground placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-neonCyan transition-colors`}
+                    placeholder="Your Name or Company Name"
                   />
                   {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                 </div>
@@ -143,8 +143,8 @@ export function ContactModal({ isOpen, onClose, initialProjectText = "" }: Conta
                       setFormData({ ...formData, email: e.target.value });
                       if (errors.email) setErrors({ ...errors, email: "" });
                     }}
-                    className={`w-full bg-foreground/5 border ${errors.email ? 'border-red-500 dark:border-red-500' : 'border-foreground/10'} rounded-lg px-4 py-2.5 text-foreground placeholder-zinc-500 focus:outline-none focus:border-neonCyan transition-colors`}
-                    placeholder="john@example.com"
+                    className={`w-full bg-foreground/5 border ${errors.email ? 'border-red-500 dark:border-red-500' : 'border-foreground/10'} rounded-lg px-4 py-2.5 text-foreground placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-neonCyan transition-colors`}
+                    placeholder="you@domain.com"
                   />
                   {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                 </div>
@@ -158,8 +158,8 @@ export function ContactModal({ isOpen, onClose, initialProjectText = "" }: Conta
                       setFormData({ ...formData, project: e.target.value });
                       if (errors.project) setErrors({ ...errors, project: "" });
                     }}
-                    className={`w-full bg-foreground/5 border ${errors.project ? 'border-red-500 dark:border-red-500' : 'border-foreground/10'} rounded-lg px-4 py-2.5 text-foreground placeholder-zinc-500 focus:outline-none focus:border-neonCyan transition-colors resize-none`}
-                    placeholder="We need a highly scalable Next.js dashboard..."
+                    className={`w-full bg-foreground/5 border ${errors.project ? 'border-red-500 dark:border-red-500' : 'border-foreground/10'} rounded-lg px-4 py-2.5 text-foreground placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-neonCyan transition-colors resize-none`}
+                    placeholder="....."
                   />
                   {errors.project && <p className="text-red-500 text-xs mt-1">{errors.project}</p>}
                 </div>

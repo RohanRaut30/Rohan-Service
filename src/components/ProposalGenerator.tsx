@@ -56,7 +56,7 @@ export function ProposalGenerator({ onContactClick }: ProposalGeneratorProps) {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="e.g., 'I need a scalable e-commerce app with an admin dashboard'"
-            className="w-full bg-background dark:bg-zinc-900 border border-black/10 dark:border-foreground/20 focus:border-purple-500 rounded-xl px-5 py-4 outline-none transition-colors shadow-inner text-foreground placeholder-zinc-500"
+            className="w-full bg-background dark:bg-zinc-900 border border-black/10 dark:border-foreground/20 focus:border-purple-500 rounded-xl px-5 py-4 outline-none transition-colors shadow-inner text-foreground placeholder-zinc-400 dark:placeholder-zinc-500"
             disabled={isGenerating}
           />
           <button
