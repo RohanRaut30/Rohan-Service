@@ -23,8 +23,9 @@ const featuresList = [
 ];
 
 const timelines = [
-  { id: "standard", label: "Standard", multiplier: 1 },
-  { id: "rush", label: "Extreme Velocity", multiplier: 1.5 },
+  { id: "standard", label: "Standard", multiplier: 1.0 },
+  { id: "express", label: "Express", multiplier: 1.25 },
+  { id: "rush", label: "Hyper-Velocity", multiplier: 1.5 },
 ];
 
 export function ProjectCostEstimator({ onContact }: { onContact: (text?: string) => void }) {
@@ -88,7 +89,9 @@ export function ProjectCostEstimator({ onContact }: { onContact: (text?: string)
     const rawTraditional = baseWeeksTraditional + extraWeeksTraditional;
     let rawRohan = baseWeeksRohan + extraWeeksRohan;
     
-    if (timeline === "rush") {
+    if (timeline === "express") {
+      rawRohan = Math.max(1, rawRohan * 0.85);
+    } else if (timeline === "rush") {
       rawRohan = Math.max(1, rawRohan * 0.7);
     }
 
@@ -196,10 +199,19 @@ export function ProjectCostEstimator({ onContact }: { onContact: (text?: string)
   const handleQuoteClick = () => {
     const selectedType = projectTypes.find(pt => pt.id === projectType)?.label || "Custom App";
     const features = selectedFeatures.map(f => featuresList.find(fl => fl.id === f)?.label).filter(Boolean).join(", ");
-    const selectedTimeline = timelines.find(t => t.id === timeline)?.label || "Standard";
+    const selectedTimeline = timelines.find(t => t.id === timeline);
+    const timelineLabel = selectedTimeline?.label || "Standard";
+
+    let activeSla = "Standard Quality & Support SLA";
+    if (timeline === "express") {
+      activeSla = "Express Standup & 10% Delay Guarantee SLA";
+    } else if (timeline === "rush") {
+      activeSla = "Hyper-Velocity 24/7 Standup & 25% Delay Refund SLA";
+    }
 
     const prefillText = `I would like to get a precise quote for a "${selectedType}" project.
-- Timeline: ${selectedTimeline} (${rohanWeeks} weeks)
+- Timeline Speed: ${timelineLabel} (${rohanWeeks} weeks)
+- Selected SLA Tiers: ${activeSla}
 - Selected Features: ${features || "None"}
 - Estimated Budget Range: ₹${estimate.min.toLocaleString('en-IN')} to ₹${Math.round(estimate.max).toLocaleString('en-IN')}
 
@@ -274,7 +286,7 @@ Here are some additional details about my business requirements:\n`;
           {/* Timeline */}
           <div>
             <h4 className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-3">3. Timeline</h4>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {timelines.map(t => (
                 <button
                   key={t.id}
@@ -353,6 +365,32 @@ Here are some additional details about my business requirements:\n`;
                 <span className="text-xs text-zinc-500 uppercase tracking-wider block font-semibold">Value Saved</span>
                 <span className="text-lg font-extrabold text-green-600 dark:text-green-400">₹{moneySaved.toLocaleString('en-IN')}</span>
                 <span className="text-xs text-zinc-400 block mt-0.5">In agency overhead costs</span>
+              </div>
+            </div>
+
+            {/* SLA & Guarantee Card */}
+            <div className="mb-6 p-4 rounded-2xl border text-left bg-blue-500/5 dark:bg-blue-950/10 border-blue-500/20">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-neonCyan animate-pulse" />
+                <span className="text-xs font-bold text-blue-600 dark:text-neonCyan uppercase tracking-wider">Active SLA & Guarantee</span>
+              </div>
+              <div className="space-y-2 text-[11px]">
+                <div>
+                  <span className="font-semibold text-zinc-500 dark:text-zinc-400 block">SLA Timeline Guarantee:</span>
+                  <span className="text-foreground font-medium">
+                    {timeline === "standard" && "100% milestone staging approval before final code handover."}
+                    {timeline === "express" && "On-Time SLA: 10% budget refund if launch date is missed."}
+                    {timeline === "rush" && "High-Velocity SLA: 25% budget refund if launch is delayed by >2 days."}
+                  </span>
+                </div>
+                <div>
+                  <span className="font-semibold text-zinc-500 dark:text-zinc-400 block">Post-Launch Support:</span>
+                  <span className="text-foreground font-medium">
+                    {timeline === "standard" && "30 days of free bug-fix and maintenance support."}
+                    {timeline === "express" && "60 days of priority post-launch support."}
+                    {timeline === "rush" && "90 days of dedicated priority support with hot-fixes."}
+                  </span>
+                </div>
               </div>
             </div>
             

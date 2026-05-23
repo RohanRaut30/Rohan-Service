@@ -220,25 +220,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-8 w-full">
               <ProjectCostEstimator onContact={openContactModal} />
-              
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-                <div className="lg:col-span-2">
-                  <TechStackMatcher onContact={() => openContactModal()} />
-                </div>
-                <div className="bg-surface border border-foreground/10 rounded-3xl p-8 w-full shadow-2xl relative overflow-hidden flex flex-col justify-center items-center text-center group">
-                  <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-neonCyan/5 blur-[80px] rounded-full pointer-events-none group-hover:bg-neonCyan/10 transition-colors duration-700" />
-                  <h3 className="text-xl font-bold text-foreground mb-2">Have a unique idea?</h3>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-6 max-w-xs leading-relaxed">
-                    Let's sketch a custom architecture and outline a precise development timeline together.
-                  </p>
-                  <button
-                    onClick={() => openContactModal()}
-                    className="py-3.5 px-6 bg-foreground text-background font-semibold rounded-xl hover:bg-zinc-200 transition-colors shadow-lg cursor-pointer text-sm w-full"
-                  >
-                    Discuss Custom Project
-                  </button>
-                </div>
-              </div>
+              <TechStackMatcher onContact={() => openContactModal()} />
             </div>
           </section>
 

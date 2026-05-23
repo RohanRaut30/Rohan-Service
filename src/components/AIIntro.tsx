@@ -1,19 +1,22 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Terminal } from "lucide-react";
 
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 export function AIIntro() {
   const [stage, setStage] = useState(0);
-  const [shouldShow, setShouldShow] = useState(false);
+  const [shouldShow, setShouldShow] = useState(true);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     // Check if intro was already played in this session
     const hasPlayed = sessionStorage.getItem("introPlayed");
 
     if (hasPlayed) {
       setShouldShow(false);
+      setStage(1);
       return;
     }
 

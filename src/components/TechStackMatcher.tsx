@@ -83,7 +83,7 @@ export function TechStackMatcher({ onContact }: { onContact: () => void }) {
                 exit={{ opacity: 0 }}
                 className="text-center text-zinc-500 text-sm"
               >
-                Select a problem above to reveal the recommended tech stack and solution.
+                Select a bottleneck above to see the recommended stack and service match.
               </motion.div>
             ) : (
               <motion.div
@@ -91,21 +91,26 @@ export function TechStackMatcher({ onContact }: { onContact: () => void }) {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-4"
+                transition={{ duration: 0.2 }}
+                className="space-y-4 w-full"
               >
-                <div>
-                  <div className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Recommended Stack</div>
-                  <div className="text-lg font-bold text-purple-700 dark:text-electricPurple">
-                    {solutions[selectedProblem].stack}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="bg-foreground/[0.02] dark:bg-zinc-950/20 border border-foreground/5 rounded-xl p-4">
+                    <div className="text-xs text-zinc-500 uppercase tracking-wider mb-1 font-mono">Recommended Stack</div>
+                    <div className="text-base font-bold text-purple-700 dark:text-electricPurple">
+                      {solutions[selectedProblem].stack}
+                    </div>
+                  </div>
+                  <div className="bg-foreground/[0.02] dark:bg-zinc-950/20 border border-foreground/5 rounded-xl p-4">
+                    <div className="text-xs text-zinc-500 uppercase tracking-wider mb-1 font-mono">Service Match</div>
+                    <div className="text-base font-bold text-foreground font-semibold">
+                      {solutions[selectedProblem].service}
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <div className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Service Match</div>
-                  <div className="text-foreground font-medium mb-2">
-                    {solutions[selectedProblem].service}
-                  </div>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <div className="bg-foreground/[0.02] dark:bg-zinc-950/20 border border-foreground/5 rounded-xl p-4">
+                  <div className="text-xs text-zinc-500 uppercase tracking-wider mb-1 font-mono">Solution Details</div>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mt-1">
                     {solutions[selectedProblem].description}
                   </p>
                 </div>
