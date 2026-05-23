@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calculator, Check, ArrowRight, Loader2, Sparkles, X, Copy, FileText } from "lucide-react";
-import ReactMarkdown from "react-markdown";
+import { Calculator, Check, ArrowRight } from "lucide-react";
 
 const projectTypes = [
   { id: "landing", label: "Landing Page / Portfolio", baseMin: 5000, baseMax: 8000 },
@@ -39,11 +38,6 @@ export function ProjectCostEstimator({ onContact }: { onContact: (text?: string)
   const [moneySaved, setMoneySaved] = useState(25000);
   const [showRoadmap, setShowRoadmap] = useState(false);
 
-  const [proposalModalOpen, setProposalModalOpen] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [proposalText, setProposalText] = useState<string | null>(null);
-  const [isCopied, setIsCopied] = useState(false);
-
   useEffect(() => {
     let extraCost = 0;
     let extraWeeksTraditional = 0;
@@ -53,7 +47,7 @@ export function ProjectCostEstimator({ onContact }: { onContact: (text?: string)
       const feature = featuresList.find((f) => f.id === featureId);
       if (feature) {
         extraCost += feature.cost;
-        
+
         if (featureId === "ui") { extraWeeksTraditional += 2; extraWeeksRohan += 0.5; }
         else if (featureId === "auth") { extraWeeksTraditional += 1; extraWeeksRohan += 0.25; }
         else if (featureId === "payments") { extraWeeksTraditional += 2; extraWeeksRohan += 0.5; }
@@ -88,7 +82,7 @@ export function ProjectCostEstimator({ onContact }: { onContact: (text?: string)
 
     const rawTraditional = baseWeeksTraditional + extraWeeksTraditional;
     let rawRohan = baseWeeksRohan + extraWeeksRohan;
-    
+
     if (timeline === "express") {
       rawRohan = Math.max(1, rawRohan * 0.85);
     } else if (timeline === "rush") {
@@ -97,7 +91,7 @@ export function ProjectCostEstimator({ onContact }: { onContact: (text?: string)
 
     setTraditionalWeeks(Math.ceil(rawTraditional));
     setRohanWeeks(Number(rawRohan.toFixed(1)));
-    
+
     const agencyMin = (baseMin + extraCost) * selectedTimeline.multiplier * 2.5;
     setMoneySaved(Math.round(agencyMin - ((baseMin + extraCost) * selectedTimeline.multiplier)));
 
@@ -111,7 +105,7 @@ export function ProjectCostEstimator({ onContact }: { onContact: (text?: string)
 
   const generateSprints = () => {
     const sprints = [];
-    
+
     const sprint1Tasks = ["Project setup & environment config", "Database schema & API routing design"];
     if (selectedFeatures.includes("ui")) {
       sprint1Tasks.push("High-fidelity UI/UX design & prototype");
@@ -139,7 +133,7 @@ export function ProjectCostEstimator({ onContact }: { onContact: (text?: string)
     if (selectedFeatures.includes("realtime")) {
       sprint3Tasks.push("Websocket channels for real-time notifications");
     }
-    
+
     if (sprint3Tasks.length > 0 || projectType !== "landing") {
       if (sprint3Tasks.length === 0) {
         sprint3Tasks.push("REST API backend controller integration");
@@ -155,46 +149,13 @@ export function ProjectCostEstimator({ onContact }: { onContact: (text?: string)
       launchTasks.push("CMS backend content synchronization");
     }
     launchTasks.push("Cloud server deployment (Vercel / Azure) & Handover");
-    
+
     const lastWeek = sprints.length + 1;
     sprints.push({ week: lastWeek, title: `Sprint ${lastWeek}: Optimization & Launch`, tasks: launchTasks });
 
     return sprints;
   };
 
-  const handleGenerateProposal = async () => {
-    setIsGenerating(true);
-    setProposalModalOpen(true);
-    setProposalText(null);
-
-    const selectedType = projectTypes.find(pt => pt.id === projectType)?.label || "Custom App";
-    const features = selectedFeatures.map(f => featuresList.find(fl => fl.id === f)?.label).filter(Boolean).join(", ");
-    const selectedTimeline = timelines.find(t => t.id === timeline)?.label || "Standard";
-
-    const promptText = `Please generate a technical proposal for a "${selectedType}" project. Timelines requested: ${selectedTimeline} (${rohanWeeks} weeks). Included features: ${features || "None selected yet"}. Please outline key architecture decisions, deliverables, and exact tech stack suggestions.`;
-
-    try {
-      const res = await fetch("/api/proposal", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: promptText }),
-      });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
-      setProposalText(data.text);
-    } catch (err) {
-      setProposalText("## Error Generating Proposal\n\nSorry, I ran into an issue generating your proposal. Please try again or contact me directly at rohan.raut.dev@gmail.com.");
-    } finally {
-      setIsGenerating(false);
-    }
-  };
-
-  const handleCopyProposal = () => {
-    if (!proposalText) return;
-    navigator.clipboard.writeText(proposalText);
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 2000);
-  };
 
   const handleQuoteClick = () => {
     const selectedType = projectTypes.find(pt => pt.id === projectType)?.label || "Custom App";
@@ -235,10 +196,10 @@ Here are some additional details about my business requirements:\n`;
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
-        
+
         {/* Left Column: Configuration Section */}
         <div className="lg:col-span-7 space-y-6">
-          
+
           {/* Project Type */}
           <div>
             <h4 className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-3">1. Project Type</h4>
@@ -305,9 +266,9 @@ Here are some additional details about my business requirements:\n`;
               onClick={() => setShowRoadmap(!showRoadmap)}
               className="flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-neonCyan hover:underline cursor-pointer"
             >
-              {showRoadmap ? "Hide Weekly Delivery Roadmap" : "Show Weekly Delivery Roadmap ➔"}
+              {showRoadmap ? "Hide Delivery Roadmap" : "Show Delivery Roadmap ➔"}
             </button>
-            
+
             <AnimatePresence>
               {showRoadmap && (
                 <motion.div
@@ -347,7 +308,7 @@ Here are some additional details about my business requirements:\n`;
         <div className="lg:col-span-5 lg:sticky lg:top-24 w-full">
           <div className="bg-surfaceBorder/30 border border-foreground/5 rounded-3xl p-6 sm:p-8 text-center w-full">
             <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">Estimated Investment Range</p>
-            
+
             <div className="text-2xl sm:text-3xl md:text-4xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-extrabold text-blue-700 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-white dark:to-zinc-400 mb-2 leading-tight flex flex-wrap items-center justify-center gap-1 sm:gap-2">
               <span className="whitespace-nowrap">₹{estimate.min.toLocaleString('en-IN')}</span>
               <span className="text-lg sm:text-xl text-zinc-500 font-normal">to</span>
@@ -393,23 +354,15 @@ Here are some additional details about my business requirements:\n`;
                 </div>
               </div>
             </div>
-            
+
             <p className="text-xs text-zinc-500 mb-8 leading-relaxed w-full">
               * This is a rough automated estimate. Final pricing depends heavily on specific requirements, scale, and complexity.
             </p>
 
-            <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3 justify-center w-full">
-              <button
-                onClick={handleGenerateProposal}
-                className="flex-1 py-4 px-6 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl flex items-center justify-center gap-2 transition-colors shadow-lg shadow-purple-600/25 group/btn cursor-pointer text-sm"
-              >
-                <Sparkles className="w-4 h-4 animate-pulse" />
-                Generate AI Proposal
-              </button>
-              
+            <div className="flex justify-center w-full">
               <button
                 onClick={handleQuoteClick}
-                className="flex-1 py-4 px-6 bg-foreground text-background font-semibold rounded-xl flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors shadow-lg group/btn cursor-pointer text-sm"
+                className="w-full py-4 px-6 bg-foreground text-background font-semibold rounded-xl flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors shadow-lg group/btn cursor-pointer text-sm"
               >
                 Get a Precise Quote
                 <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -419,81 +372,6 @@ Here are some additional details about my business requirements:\n`;
         </div>
 
       </div>
-
-      {/* AI Proposal Modal Overlay */}
-      <AnimatePresence>
-        {proposalModalOpen && (
-          <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setProposalModalOpen(false)}
-              className="fixed inset-0 bg-background/60 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-3xl h-[80vh] bg-surface border border-surfaceBorder rounded-2xl shadow-2xl flex flex-col overflow-hidden"
-            >
-              {/* Header */}
-              <div className="flex items-center justify-between border-b border-surfaceBorder px-6 py-4 bg-background/30 backdrop-blur-md">
-                <div className="flex items-center gap-2">
-                  <FileText className="w-5 h-5 text-purple-600 dark:text-electricPurple" />
-                  <span className="font-bold text-foreground">AI Generated Technical Proposal</span>
-                </div>
-                <button
-                  onClick={() => setProposalModalOpen(false)}
-                  className="text-zinc-500 hover:text-foreground transition-colors cursor-pointer"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Content Body */}
-              <div className="flex-1 overflow-y-auto p-6 sm:p-8 no-scrollbar bg-white dark:bg-zinc-950 text-left">
-                {isGenerating ? (
-                  <div className="flex h-full flex-col items-center justify-center text-zinc-500 py-12">
-                    <Loader2 className="h-8 w-8 animate-spin text-purple-600 dark:text-electricPurple mb-4" />
-                    <p className="font-mono text-sm">Mapping sprints, architecture and timelines...</p>
-                  </div>
-                ) : (
-                  <div className="prose prose-sm sm:prose-base dark:prose-invert max-w-none prose-headings:text-purple-700 dark:prose-headings:text-electricPurple prose-a:text-blue-600">
-                    <ReactMarkdown>{proposalText || ""}</ReactMarkdown>
-                  </div>
-                )}
-              </div>
-
-              {/* Footer */}
-              <div className="border-t border-surfaceBorder px-6 py-4 bg-background/30 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p className="text-xs text-zinc-500">Ready to build this at extreme velocity?</p>
-                <div className="flex items-center gap-3 w-full sm:w-auto">
-                  <button
-                    onClick={handleCopyProposal}
-                    disabled={isGenerating || !proposalText}
-                    className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2.5 border border-surfaceBorder hover:bg-foreground/5 rounded-xl font-medium text-sm transition-colors disabled:opacity-50 cursor-pointer text-foreground"
-                  >
-                    <Copy className="w-4 h-4" />
-                    {isCopied ? "Copied!" : "Copy Proposal"}
-                  </button>
-                  <button
-                    onClick={() => {
-                      setProposalModalOpen(false);
-                      handleQuoteClick();
-                    }}
-                    disabled={isGenerating}
-                    className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-xl font-semibold text-sm hover:scale-[0.98] transition-transform disabled:opacity-50 cursor-pointer"
-                  >
-                    Let's Collaborate <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

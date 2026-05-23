@@ -8,6 +8,7 @@ import { ContactModal } from "../components/ContactModal";
 import { Header } from "../components/Header";
 import { ProjectCostEstimator } from "../components/ProjectCostEstimator";
 import { TechStackMatcher } from "../components/TechStackMatcher";
+import { RoiCalculator } from "../components/RoiCalculator";
 import { LocalGreeting } from "../components/LocalGreeting";
 
 import { useContact } from "../components/ContactContext";
@@ -221,6 +222,7 @@ export default function Home() {
             <div className="flex flex-col gap-8 w-full">
               <ProjectCostEstimator onContact={openContactModal} />
               <TechStackMatcher onContact={() => openContactModal()} />
+              <RoiCalculator onContact={openContactModal} />
             </div>
           </section>
 
