@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { MobileNav } from "../components/MobileNav";
 import { FloatingContact } from "../components/FloatingContact";
-import { TimeBasedTheme } from "../components/TimeBasedTheme";
+
 import { ContactProvider } from "../components/ContactContext";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 const geistSans = Geist({
@@ -81,8 +81,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300 pb-24 sm:pb-0">
-        <ThemeProvider attribute="class" defaultTheme="dark" themes={["light", "dark", "sunset", "midnight"]} enableSystem>
-          <TimeBasedTheme />
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} themes={["light", "dark"]}>
           <ContactProvider>
             {children}
             <MobileNav />

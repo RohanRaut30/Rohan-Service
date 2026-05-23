@@ -37,7 +37,7 @@ export default function Home() {
         body: JSON.stringify({ messages: [{ role: "user", content: searchQuery }] }),
       });
       const data = await res.json();
-      
+
       if (data.error) throw new Error(data.error);
       setAiResponse(data.text);
     } catch (err) {
@@ -59,7 +59,7 @@ export default function Home() {
         <Header activePage="services" onContactClick={() => openContactModal()} />
 
         {/* Main Content */}
-        <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 pt-16 pb-24 flex flex-col items-center gap-16">
+        <main className="relative z-10 max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-8 pt-16 pb-24 flex flex-col items-center gap-16">
 
           {/* USP Hero Section */}
           <section className="flex flex-col items-center text-center gap-6 max-w-4xl w-full">
@@ -124,7 +124,7 @@ export default function Home() {
                           </div>
                         </div>
                         <div className="pt-3 border-t border-white/10 flex justify-end">
-                          <button onClick={openContactModal} className="text-xs font-semibold text-neonCyan hover:underline cursor-pointer">
+                          <button onClick={() => openContactModal()} className="text-xs font-semibold text-neonCyan hover:underline cursor-pointer">
                             Let's discuss requirements ➔
                           </button>
                         </div>
@@ -211,16 +211,34 @@ export default function Home() {
 
 
           {/* Interactive Tools Section */}
-          <section className="w-full mt-12">
-            <div className="mb-10 text-center">
+          <section className="w-full mt-12 flex flex-col gap-12">
+            <div className="text-center">
               <h2 className="text-3xl font-bold text-foreground mb-4">Interactive Calculators</h2>
               <p className="text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto">
                 Stop guessing. Use my interactive tools below to get instant estimates on project costs and discover the exact technology stack you need.
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+            <div className="flex flex-col gap-8 w-full">
               <ProjectCostEstimator onContact={openContactModal} />
-              <TechStackMatcher onContact={openContactModal} />
+              
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+                <div className="lg:col-span-2">
+                  <TechStackMatcher onContact={() => openContactModal()} />
+                </div>
+                <div className="bg-surface border border-foreground/10 rounded-3xl p-8 w-full shadow-2xl relative overflow-hidden flex flex-col justify-center items-center text-center group">
+                  <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-neonCyan/5 blur-[80px] rounded-full pointer-events-none group-hover:bg-neonCyan/10 transition-colors duration-700" />
+                  <h3 className="text-xl font-bold text-foreground mb-2">Have a unique idea?</h3>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-6 max-w-xs leading-relaxed">
+                    Let's sketch a custom architecture and outline a precise development timeline together.
+                  </p>
+                  <button
+                    onClick={() => openContactModal()}
+                    className="py-3.5 px-6 bg-foreground text-background font-semibold rounded-xl hover:bg-zinc-200 transition-colors shadow-lg cursor-pointer text-sm w-full"
+                  >
+                    Discuss Custom Project
+                  </button>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -231,7 +249,7 @@ export default function Home() {
               Skip the prolonged dev cycles. Let's build something exceptional right now.
             </p>
             <button
-              onClick={openContactModal}
+              onClick={() => openContactModal()}
               className="inline-flex items-center gap-3 px-8 py-4 bg-foreground text-background rounded-full font-semibold text-lg hover:scale-[0.98] transition-transform shadow-sm cursor-pointer"
             >
               <Mail className="w-5 h-5" />

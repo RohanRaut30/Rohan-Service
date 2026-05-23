@@ -52,7 +52,7 @@ export function MobileNav() {
           <span className="text-[10px] font-medium text-zinc-500 group-hover:text-zinc-700 dark:text-zinc-300">Share</span>
         </button>
 
-        <button onClick={openContactModal} className="flex flex-col items-center gap-1 group">
+        <button onClick={() => openContactModal()} className="flex flex-col items-center gap-1 group">
           <div className="relative">
             <Mail className="w-5 h-5 text-zinc-500 group-hover:text-zinc-700 dark:text-zinc-300 transition-colors" />
             <span className="absolute -top-1 -right-1 w-2 h-2 bg-electricPurple rounded-full animate-pulse" />

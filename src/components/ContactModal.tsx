@@ -7,12 +7,19 @@ import { X, Send, Loader2, CheckCircle2 } from "lucide-react";
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialProjectText?: string;
 }
 
-export function ContactModal({ isOpen, onClose }: ContactModalProps) {
+export function ContactModal({ isOpen, onClose, initialProjectText = "" }: ContactModalProps) {
   const [formData, setFormData] = useState({ name: "", email: "", project: "" });
   const [errors, setErrors] = useState({ name: "", email: "", project: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setFormData((prev) => ({ ...prev, project: initialProjectText }));
+    }
+  }, [isOpen, initialProjectText]);
 
   const validate = () => {
     let newErrors = { name: "", email: "", project: "" };
